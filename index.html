@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="RSA Algorithm Implementation">
+        <meta name="keywords" content="HTML, CSS, JS, RSA Algorithm Implementation, Information Security">
+        <meta name="author" content="Ravindra Mevada">
+        <link rel="stylesheet" href="src/styles/style.css" type="text/css">
+        <link rel="stylesheet" href="src/styles/github.css" type="text/css">
+        <title>RSA Algorithm Implementation</title>
+    </head>
+    <body>
+
+        <header>
+            <h1>RSA Algorithm Implementation</h1>
+        </header>
+        <!-- The video -->
+        <article class="rsa">
+
+            <h3>Generate Private & Public Keys</h3>
+            <article class="steps">
+                <p>Enter two prime numbers P and Q:</p>
+                <p><strong>P: </strong>&nbsp;<input type="text" id="p"></p>
+                <p><strong>Q: </strong><input type="text" id="q"></p>
+                <p><strong><span id="not-prime" style="color: red"></span></strong></p>
+                <p><input type="button" class="button" value="Calculate" onclick="calculate()"></p>
+            </article>
+            <article class="steps">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 7%;">Variable</th>
+                            <th style="width: 13%;">Value</th>
+                            <th style="width: 7%;">Name</th>
+                            <th style="width: 13%;">Formula</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center;"><strong>N</strong></td>
+                            <td><input type="text" id="n" style="border:0px; text-align:center;" readonly></td>
+                            <td style="text-align: center;">-</td>
+                            <td style="text-align: center;">N = P * Q</td>
+                            <td>Multiplication of two prime numbers.</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><strong>L</strong></td>
+                            <td><input type="text" id="l" style="border:0px; text-align:center;" readonly></td>
+                            <td style="text-align: center;">-</td>
+                            <td style="text-align: center;">L = (P - 1) * (Q - 1)</td>
+                            <td>Multiplication of (P - 1) and (Q - 1).</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><strong>E</strong></td>
+                            <td><input type="text" id="e" onchange="encryptionKeyChanged()" style="border:0px; text-align:center;"></td>
+                            <td style="text-align: center;">Encryption Key</td>
+                            <td style="text-align: center;">-</td>
+                            <td>A number between 1 and L that is coprime with N and L.<br><span style="color: #70706d;"><em>The default first encryption key can be replaced with one of the other possible keys given below.</em></span>
+                                <br><strong><span id="encryption-keys" style="color: green"></span></strong></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><strong>D</strong></td>
+                            <td><input type="text" id="d" onchange="decryptionKeyChanged()" style="border:0px; text-align:center;"/></td>
+                            <td style="text-align: center;">Decryption Key</td>
+                            <td style="text-align: center;">D * E % L = 1</td>
+                            <td>Remainder of the product of D and E when divided by L should be 1.<br><span style="color: #70706d;"><em>The default first decryption key can be replaced with one of the other possible keys given below.</em></span><br><strong><span id="decryption-keys" style="color: green"></span></strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>Public key (E, N): </strong><span id="public-key"></span></p>
+                <p><strong>Private key (D, N): </strong><span id="private-key"></span></p>
+            </article>
+            <h3>Encrypt a Message</h3>
+            <article class="steps">
+                <p>Enter a message to encrypt: <input type="text" id="message" size="51"></p>
+                <p><input type="button" class="button" value="Encrypt" onclick="encryptMessage()"></p>
+                <p><strong>Encrypted Message: </strong><span id="encrypted-message"></span><br><span style="color: #70706d;"><em>The message is first converted to ASCII character encoding format and then encrypted using the equation <strong>Encrypted Message = (Message) <sup>E</sup> % N</strong>.</em></span>
+            </article>
+            <h3>Decrypt a Message</h3>
+            <article class="steps">
+                <p>Enter an encrypted message to decrypt: <input type="text" id="encrypted-message-textbox" size="51"></p>
+                <p><input type="button" class="button" value="Decrypt" onclick="decryptMessage()"></p>
+                <p><strong>Decrypted Message: <span id="decrypted-message" style="color: blue;"></span></strong><br><span style="color: #70706d;"><em>The encrypted message is first decrypted using the equation <strong>Decrypted Message = (Encrypted Message) <sup>D</sup> % N</strong> and then converted to ASCII character encoding format to retrieve the original message.</em></span></p>
+            </article>
+        </article>
+        <script src="src/scripts/script.js" type="text/javascript"></script> 
+
+    </body>
+</html>
