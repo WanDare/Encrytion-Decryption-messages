@@ -42,6 +42,7 @@ p {
 }
 table {
     border: 1px solid whitesmoke;
+    border-radius: 5px;
     border-spacing: 0;
 }
 thead, th {
